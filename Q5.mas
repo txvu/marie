@@ -1,0 +1,54 @@
+  
+                Org 100         /Start at HEX 100
+                Input
+                Store Length
+                Load Length
+                Store Index
+Loop,                   /Do something inside the for-loop
+                Load Index
+                Subt One        /Decrease the Index after each loop
+                Store Index
+                Skipcond 400    /If Index = 0, skip the next instruction
+                Jump Loop
+                Halt            /End program
+
+One,            Dec 1
+Index,          Dec 0        
+Length,         Dec 0
+
+
+                Input
+                Store Length
+                Load Length
+                Store Index
+Loop,           Skipcond 400    /If Index = 0, skip the next instruction
+                Halt
+                        /Do something inside the for-loop            
+                Load Index
+                Subt One        /Decrease the Index after each loop
+                Store Index
+                Jump Loop       /Repeat the loop until index = 0
+
+One,    Dec 1
+Index,  Dec 0        
+Length, Dec 0
+
+
+
+                JnS Function    /After executed sunroutine Function
+                Halt            /JsN will jump to next address which is Halt
+
+Function,       HEX 0           /Name and address of subroutine
+                                /Do something inside the subroutine
+                JumpI           /Return to calling code
+
+
+
+
+Main,           Jump Function   /Set a "Main" reference to jump back in after executed "Function"
+                Halt            /End the program
+
+Function                        /Do something inside the subroutine
+                Jump Main       /Jump back to "Main" to continue the program
+
+

@@ -1,0 +1,67 @@
+START,      INPUT
+            STORE A         /BASE
+            INPUT 
+            STORE B         /EXPONENT OF A
+            LOAD B
+            SUBT ONE
+            STORE INDEX_I
+            
+LOOP_I,     LOAD INDEX_I
+            SKIPCOND 800
+            HALT          /RETUNR -1
+            LOAD INDEX_I
+            STORE TEMP_EX
+            LOAD A
+            SUBT ONE
+            STORE INDEX_J
+
+LOOP_J,     LOAD INDEX_J
+            SKIPCOND 800
+            JUMP COMPARE
+            LOAD INDEX_I
+            STORE INDEX_K
+            LOAD ZERO
+            STORE TEMP_MUL
+
+LOOP_K,     LOAD INDEX_K
+            SKIPCOND 800
+            JUMP CONTINUE_J
+            LOAD TEMP_EX
+            ADD TEMP_MUL
+            STORE TEMP_MUL
+            LOAD INDEX_K
+            SUBT ONE
+            STORE INDEX_K
+            JUMP LOOP_K
+
+CONTINUE_J, LOAD TEMP_MUL
+            STORE TEMP_EX
+            LOAD INDEX_J
+            SUBT ONE
+            STORE INDEX_J
+            JUMP LOOP_J
+
+COMTINUE_I, LOAD INDEX_I
+            SUBT ONE
+            STORE INDEX_I
+            JUMP LOOP_I
+            
+COMPARE,    LOAD B
+            SUBT TEMP_EX
+            SKIPCOND 400
+            JUMP COMTINUE_I
+            LOAD INDEX_I
+            OUTPUT
+            HALT
+
+A,	        DEC 0
+B,	        DEC 0
+C,	        DEC 0
+ZERO,       DEC 0
+ONE,        DEC 1
+
+INDEX_I,    DEC 1
+INDEX_J,    DEC 1
+INDEX_K,    DEC 1
+TEMP_MUL,   DEC 1
+TEMP_EX,    DEC 1

@@ -1,0 +1,21 @@
+                ORG 100         /Start at HEX 100
+                INPUT           /Ask for input
+                STORE A         /Store input into A
+                LOAD A
+                SKIPCOND 400    /Check if the input = 0
+                JUMP LOOP       /If not, jump to "Loop" to calculate
+                JUMP DISPLAY    /Show result = 0 if the input = 0
+LOOP,           LOAD A          /Load A's value into AC
+                ADD C           /Add C's value into AC
+                STORE C         /Store AC in to C
+                LOAD A          
+                SUBT ONE        /Decrease A's value
+                STORE A
+                SKIPCOND 400    /If B = 0, skip the next instruction
+                JUMP LOOP       /Loop again
+DISPLAY,        LOAD C          
+                OUTPUT C        /Load and show the result
+                HALT            /End program
+A,              DEC 0
+C,              DEC 0
+ONE,            DEC 1  

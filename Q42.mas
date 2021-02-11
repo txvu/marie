@@ -1,0 +1,29 @@
+                ORG 100         /Start at HEX 100
+                JNS CALC        /Store the return address and jump to the procedure.
+DISPLAY,        LOAD C          /Load the result
+                OUTPUT          /Show the result
+                HALT            /End program
+A,	        DEC 0
+B,	        DEC 0
+C,	        DEC 0
+ONE,            DEC 1
+CALC,           HEX 0           /CALC is the name of the subroutine, return address is HEX 0
+                INPUT           /Ask for input for first number       
+                STORE A         /Store first number
+                SKIPCOND 400    /Check if the first number = 0
+                JUMP CONT       /Continue if not
+                JUMP DISPLAY    /Show result = 0 if the input = 0
+CONT,           INPUT           /Ask for input for second number
+                STORE B         /Store second number
+                SKIPCOND 400    /Check if the second number = 0
+                JUMP LOOP       /If two number != 0, jump to "Loop" to calculate the result
+                JUMP DISPLAY    /Show result = 0 if the input = 0
+LOOP,           LOAD A          /Add A to C (B times) is equivalent to C = A*B
+                ADD C           
+                STORE C
+                LOAD B
+                SUBT ONE        /Subtract B for ONE until B=0, by that time, we looped B times
+                STORE B
+                SKIPCOND 400    /If B = 0, skip the next instruction
+                JUMP LOOP       /Loop again    
+                JUMPI CALC      /Return to calling code

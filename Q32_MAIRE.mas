@@ -1,0 +1,44 @@
+START,      INPUT
+            STORE A  
+            LOAD A
+            SUBT ONE
+            STORE INDEX_I
+LOOP_I,     LOAD INDEX_I
+            SKIPCOND 800
+            JUMP DISPLAY
+            LOAD ZERO
+            STORE TEMP_MUL
+            LOAD INDEX_I
+            STORE INDEX_J
+
+LOOP_J,     LOAD INDEX_J
+            SKIPCOND 800
+            JUMP CONTINUE_I
+            LOAD RESULT
+            ADD TEMP_MUL
+            STORE TEMP_MUL
+            LOAD INDEX_J
+            SUBT ONE
+            STORE INDEX_J
+            JUMP LOOP_J
+
+CONTINUE_I, LOAD TEMP_MUL
+            ADD RESULT
+            STORE RESULT
+            LOAD INDEX_I
+            SUBT ONE
+            STORE INDEX_I
+            JUMP LOOP_I
+
+DISPLAY,    LOAD RESULT
+            OUTPUT
+            HALT
+
+A,	        DEC 0
+ZERO,       DEC 0
+ONE,        DEC 1
+
+INDEX_I,    DEC 1
+INDEX_J,    DEC 1
+TEMP_MUL,   DEC 1
+RESULT,     DEC 1

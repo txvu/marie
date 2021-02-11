@@ -1,0 +1,32 @@
+START,      INPUT
+            STORE A         /BASE
+            INPUT 
+            STORE B         /EXPONENT OF A
+            STORE TEMP
+            
+LOOP,       LOAD INDEX
+            SUBT B
+            SKIPCOND 800
+            JUMP CONTINUE
+            HALT          /RETUNR -1
+CONTINUE,   LOAD TEMP
+            DIV A
+            STORE TEMP
+            SUBT ONE
+            SKIPCOND 400
+            JUMP INCREMENT
+            JUMP DISPLAY
+INCREMENT,  LOAD INDEX
+            ADD ONE
+            STORE INDEX
+            JUMP LOOP
+
+DISPLAY,    LOAD INDEX
+            OUTPUT
+            HALT
+
+A,	        DEC 0
+B,	        DEC 0
+ONE,        DEC 1
+INDEX,      DEC 1
+TEMP,       DEC 1

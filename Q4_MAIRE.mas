@@ -1,0 +1,23 @@
+START,      INPUT
+            STORE A  
+            
+LOOP,       LOAD INDEX
+            SUBT A
+            SKIPCOND 800
+            JUMP CONTINUE
+            LOAD RESULT
+            OUTPUT
+            HALT
+
+CONTINUE,   LOAD RESULT
+            MULT INDEX
+            STORE RESULT
+            LOAD INDEX
+            ADD ONE
+            STORE INDEX
+            JUMP LOOP
+
+A,	        DEC 0
+ONE,        DEC 1
+INDEX,      DEC 1
+RESULT,     DEC 1
